@@ -1,13 +1,21 @@
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
+import 'package:ejara/env/env.dart';
+
 import 'interceptor.dart';
 
 Options defaultOptions = Options(
   responseType: ResponseType.json,
   contentType: 'application/json',
   headers: {
-    "X-CSRF-TOKEN": "",
+    'api-key': Env.apiKey,
+    'client-id': Env.clientId,
+    'app-version': Env.appVersion,
+    'app-platform': Env.appPlatform,
+    'client': Env.clientId,
+    'Accept-language': 'en',
     "Accept": 'application/json',
+    "Content-Type": 'application/json',
   },
 );
 
@@ -19,7 +27,7 @@ Dio http = Dio(
   ),
 )..interceptors.addAll(
     [
-      //TokenInterceptor(),
+      TokenInterceptor(),
       DioCacheInterceptor(
           options: CacheOptions(
         // A default store is required for interceptor.
