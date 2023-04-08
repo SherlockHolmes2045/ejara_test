@@ -21,7 +21,7 @@ Options defaultOptions = Options(
 
 Dio http = Dio(
   BaseOptions(
-    baseUrl: "", //Configs.apiUrl,
+    baseUrl: Env.apiUrl,
     responseType: ResponseType.json,
     contentType: 'application/json',
   ),

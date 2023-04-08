@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:ejara/network/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../env/env.dart';
 import '../helper/shared_preference_helper.dart';
 
@@ -20,7 +20,7 @@ class TokenInterceptor extends QueuedInterceptor {
       }
     }
 
-    if (options.path != "/auth/refresh-tokens") {
+    if (options.path != "/auth/login") {
       options.headers["Authorization"] = "Bearer $accessToken";
     }
     return handler.next(options);
@@ -33,15 +33,6 @@ class TokenInterceptor extends QueuedInterceptor {
         err.response?.statusCode == 401) {
       var options = err.response?.requestOptions;
 
-      if (options?.data is FormData) {
-        FormData formData = FormData();
-        formData.fields.addAll(options?.data.fields);
-        for (MapEntry mapFile in options?.data.files) {
-          /*  formData.files.add(MapEntry(mapFile.key,
-              MultipartFileExtended.fromFileSync(mapFile.value.filePath)));*/
-        }
-        options?.data = formData;
-      }
       // If the token has been updated, repeat directly.
       if (options?.headers['Authorization'] != null &&
           !options!.headers['Authorization']
@@ -58,19 +49,19 @@ class TokenInterceptor extends QueuedInterceptor {
         return;
       }
 
-      Dio refreshDio = Dio(BaseOptions(baseUrl: Env.apiUrl));
-      var refreshToken = await SharedPreferenceHelper(instance).authToken;
+      Dio refreshDio = Dio(BaseOptions(baseUrl: Env.loginUrl));
       Map<String, dynamic> data = {
-        "refreshToken": refreshToken,
+        "log": Env.username,
+        "password": Env.password
       };
 
       // Add the Api method to get the token on the server
-      refreshDio.post("/auth/refresh-tokens", data: data).then((value) async {
+      refreshDio
+          .post("/auth/login", data: data, options: defaultOptions)
+          .then((value) async {
         // need to modify this
-        accessToken = value.data["access"]["token"];
+        accessToken = value.data["token"];
         await SharedPreferenceHelper(instance).saveAuthToken(accessToken!);
-        await SharedPreferenceHelper(instance)
-            .saveAuthToken(value.data["refresh"]["token"]);
         options?.headers["Authorization"] = "Bearer ${accessToken!}";
 
         //repeat
@@ -81,6 +72,7 @@ class TokenInterceptor extends QueuedInterceptor {
           },
         );
       }).onError((error, stackTrace) {
+        print(error.runtimeType);
         handler.next(error as DioError);
       });
 
