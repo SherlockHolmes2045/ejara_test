@@ -3,6 +3,7 @@
 *.log
 *.pyc
 *.swp
+.env
 .DS_Store
 .atom/
 .buildlog/
@@ -29,6 +30,7 @@ migrate_working_dir/
 .flutter-plugins-dependencies
 .packages
 .pub-cache/
+./lib/env/env.g.dart
 .pub/
 /build/
 
