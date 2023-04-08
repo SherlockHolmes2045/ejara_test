@@ -4,13 +4,8 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. copy the content of .env.example file to .env file in the project root and set all the variables
+2. run the command to generate the environment files `flutter pub run build_runner build --delete-conflicting-outputs`
+3. run `flutter pub get`
+4. run `flutter run`
+5. to run the tests run `flutter test` for widget test and `flutter test test/service_test.dart` for unit test

@@ -9,7 +9,6 @@ class PaymentMethodSettingProvider extends BaseProvider {
   Either<Exception, List<PaymentMethodSetting>> paymentMethodSettings =
       Right([]);
 
-
   getPaymentMethodSettings(String id) {
     toggleLoadingState();
     paymentMethodClient.fetchPaymentMethodSettings(id).then((value) {

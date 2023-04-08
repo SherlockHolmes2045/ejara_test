@@ -6,7 +6,6 @@ import 'ejara_app.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-
   runZonedGuarded(
     () => SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
         .then((_) {

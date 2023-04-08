@@ -26,22 +26,22 @@ class JsonDeserializationException implements Exception {}
 
 class PaymentMethodClient {
   Future<List<PaymentMethod>> fetchAllPaymentMethods() async {
-    final responseBody = await _get("/marketplace/payment-types-per-country?countryCode=CM&transactionType=buy");
+    final responseBody = await _get(
+        "/marketplace/payment-types-per-country?countryCode=CM&transactionType=buy");
     try {
       final data = responseBody["data"] as List<dynamic>;
-      return data
-          .map((dynamic item) => PaymentMethod.fromJson(item))
-          .toList();
+      return data.map((dynamic item) => PaymentMethod.fromJson(item)).toList();
     } catch (_) {
       throw JsonDeserializationException();
     }
   }
 
-  Future<List<PaymentMethodSetting>> fetchPaymentMethodSettings(String paymentMethodId) async {
-    final responseBody = await _get("${Env.loginUrl}/customer/payment-settings-per-type?paymentTypeId=1&countryCode=CM&transactionType=buy");
+  Future<List<PaymentMethodSetting>> fetchPaymentMethodSettings(
+      String paymentMethodId) async {
+    final responseBody = await _get(
+        "${Env.loginUrl}/customer/payment-settings-per-type?paymentTypeId=1&countryCode=CM&transactionType=buy");
     try {
       final data = responseBody["data"] as List<dynamic>;
-      print(data);
       return data
           .map((dynamic item) => PaymentMethodSetting.fromJson(item))
           .toList();
@@ -54,7 +54,7 @@ class PaymentMethodClient {
     Response response;
 
     try {
-      response = await http.get(url,options: defaultOptions);
+      response = await http.get(url, options: defaultOptions);
     } catch (_) {
       throw HttpException();
     }
