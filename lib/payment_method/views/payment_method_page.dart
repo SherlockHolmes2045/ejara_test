@@ -1,4 +1,6 @@
 import 'package:ejara/payment_method/views/payment_method_item.dart';
+import 'package:ejara/payment_method/views/wallet_item.dart';
+import 'package:ejara/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/appbar.dart';
@@ -134,17 +136,186 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
               Expanded(
                 child: ListView.separated(
                   itemBuilder: (BuildContext context, int index) {
-                    return PaymentMethodItem();
+                    return PaymentMethodItem(
+                      onTap: () => showModalBottomSheet<void>(
+                          context: context,
+                          isScrollControlled: true,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(25),
+                                topLeft: Radius.circular(25)),
+                          ),
+                          backgroundColor: Colors.white,
+                          builder: (BuildContext context) {
+                            return SizedBox(
+                              height: MediaQuery.of(context).size.height / 1.4,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 12.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 16.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Select the mobile money method',
+                                            style: TextStyle(
+                                                fontSize: Theme.of(context)
+                                                    .textTheme
+                                                    .titleMedium
+                                                    ?.fontSize,
+                                                fontWeight: FontWeight.bold,
+                                                color: const Color.fromRGBO(
+                                                    16, 20, 97, 1)),
+                                          ),
+                                          const SizedBox(
+                                            width: 16.0,
+                                          ),
+                                          IconButton(
+                                              onPressed: () =>
+                                                  Navigator.pop(context),
+                                              icon: const Icon(
+                                                Icons.close,
+                                                size: 18,
+                                                color: Color.fromRGBO(
+                                                    210, 212, 226, 1),
+                                              ))
+                                        ],
+                                      ),
+                                    ),
+                                    const Padding(
+                                      padding: EdgeInsets.only(
+                                        bottom: 8.0,
+                                      ),
+                                      child: Divider(
+                                        color: Color.fromRGBO(245, 244, 246, 1),
+                                        thickness: 1.5,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 16.0),
+                                      child: ListView.separated(
+                                          shrinkWrap: true,
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            return const WalletItem();
+                                          },
+                                          separatorBuilder:
+                                              (BuildContext context,
+                                                  int index) {
+                                            return const Divider(
+                                              color: Color.fromRGBO(
+                                                  245, 244, 246, 1),
+                                              thickness: 1.5,
+                                            );
+                                          },
+                                          itemCount: 3),
+                                    ),
+                                    const SizedBox(
+                                      height: 16.0,
+                                    ),
+                                    Row(
+                                      children: const [
+                                        Expanded(
+                                          child: Divider(
+                                            color: Color.fromRGBO(
+                                                245, 244, 246, 1),
+                                            thickness: 1.5,
+                                          ),
+                                        ),
+                                        Text(
+                                          "Or",
+                                          style: TextStyle(
+                                            color: Color.fromRGBO(
+                                                200, 200, 218, 1),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Divider(
+                                            color: Color.fromRGBO(
+                                                245, 244, 246, 1),
+                                            thickness: 1.5,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 16.0,
+                                          right: 16.0,
+                                          top: 32.0,
+                                          bottom: 32.0),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: const Color.fromRGBO(
+                                              241, 241, 250, 1),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 16.0, vertical: 12.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            const Icon(
+                                              Icons.add,
+                                              color: Color.fromRGBO(
+                                                  118, 126, 237, 1),
+                                              size: 18,
+                                            ),
+                                            Text(
+                                              "Another mobile money method",
+                                              style: TextStyle(
+                                                  fontSize: Theme.of(context)
+                                                      .textTheme
+                                                      .titleMedium!
+                                                      .fontSize,
+                                                  color: const Color.fromRGBO(
+                                                      118, 126, 237, 1),
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 16.0),
+                                      child: SizedBox(
+                                        width: double.infinity,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.07,
+                                        child: AppButton(
+                                          text: "Continue",
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            );
+                          }),
+                    );
                   },
                   separatorBuilder: (BuildContext context, int index) {
-                    return Divider(
+                    return const Divider(
                       color: Color.fromRGBO(245, 244, 246, 1),
                       thickness: 1.5,
                     );
                   },
                   itemCount: 4,
                 ),
-              )
+              ),
             ],
           ),
         ),

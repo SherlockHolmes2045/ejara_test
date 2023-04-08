@@ -5,7 +5,7 @@ class EjaraTestTheme {
     return ThemeData(
       appBarTheme: const AppBarTheme(color: Colors.white, elevation: 0),
       colorScheme: ColorScheme.fromSwatch(
-        accentColor: const Color(0xFF13B9FF),
+        accentColor: const Color.fromRGBO(15, 21, 97, 1)
       ),
       snackBarTheme: const SnackBarThemeData(
         behavior: SnackBarBehavior.floating,
