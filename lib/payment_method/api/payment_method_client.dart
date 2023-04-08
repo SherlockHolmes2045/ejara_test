@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:ejara/network/dio.dart';
+import 'package:ejara/payment_method/models/payment_method_setting.dart';
+import '../../env/env.dart';
 import '../models/payment_method.dart';
 
 /// Thrown if an exception occurs while making an `http` request.
@@ -26,7 +28,8 @@ class PaymentMethodClient {
   Future<List<PaymentMethod>> fetchAllPaymentMethods() async {
     final responseBody = await _get("/marketplace/payment-types-per-country?countryCode=CM&transactionType=buy");
     try {
-      return responseBody
+      final data = responseBody["data"] as List<dynamic>;
+      return data
           .map((dynamic item) => PaymentMethod.fromJson(item))
           .toList();
     } catch (_) {
@@ -34,7 +37,20 @@ class PaymentMethodClient {
     }
   }
 
-  Future<List<dynamic>> _get(String url) async {
+  Future<List<PaymentMethodSetting>> fetchPaymentMethodSettings(String paymentMethodId) async {
+    final responseBody = await _get("${Env.loginUrl}/customer/payment-settings-per-type?paymentTypeId=1&countryCode=CM&transactionType=buy");
+    try {
+      final data = responseBody["data"] as List<dynamic>;
+      print(data);
+      return data
+          .map((dynamic item) => PaymentMethodSetting.fromJson(item))
+          .toList();
+    } catch (_) {
+      throw JsonDeserializationException();
+    }
+  }
+
+  Future<Map> _get(String url) async {
     Response response;
 
     try {
@@ -48,7 +64,7 @@ class PaymentMethodClient {
     }
 
     try {
-      return response.data["data"];
+      return response.data;
     } catch (_) {
       throw JsonDecodeException();
     }

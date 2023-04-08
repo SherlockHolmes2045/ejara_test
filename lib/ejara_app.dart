@@ -3,6 +3,7 @@ import 'package:ejara/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'payment_method/logic/payment_method_provider.dart';
+import 'payment_method/logic/payment_method_setting_provider.dart';
 
 class EjaraApp extends StatelessWidget {
   const EjaraApp({super.key});
@@ -13,6 +14,7 @@ class EjaraApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => PaymentMethodProvider()),
+        ChangeNotifierProvider(create: (_) => PaymentMethodSettingProvider()),
       ],
       child: MaterialApp(
         title: 'Ejara test',

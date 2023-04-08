@@ -8,6 +8,7 @@ class PaymentMethodProvider extends BaseProvider {
   final PaymentMethodClient paymentMethodClient = PaymentMethodClient();
   Either<Exception, List<PaymentMethod>> paymentMethods = Right([]);
 
+
   getPaymentMethods() {
     toggleLoadingState();
     paymentMethodClient.fetchAllPaymentMethods().then((value) {
@@ -15,7 +16,6 @@ class PaymentMethodProvider extends BaseProvider {
       toggleLoadingState();
     }).catchError((error) {
       toggleLoadingState();
-      print(error);
       paymentMethods = Left(error);
     });
   }
