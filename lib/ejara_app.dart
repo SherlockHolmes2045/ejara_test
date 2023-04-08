@@ -1,3 +1,4 @@
+import 'package:ejara/payment_method/api/payment_method_client.dart';
 import 'package:ejara/payment_method/views/payment_method_page.dart';
 import 'package:ejara/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class EjaraApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => PaymentMethodProvider()),
+        ChangeNotifierProvider(create: (_) => PaymentMethodProvider(PaymentMethodClient())),
         ChangeNotifierProvider(create: (_) => PaymentMethodSettingProvider()),
       ],
       child: MaterialApp(

@@ -5,9 +5,10 @@ import 'package:dartz/dartz.dart';
 import '../models/payment_method.dart';
 
 class PaymentMethodProvider extends BaseProvider {
-  final PaymentMethodClient paymentMethodClient = PaymentMethodClient();
+  PaymentMethodClient paymentMethodClient;
   Either<Exception, List<PaymentMethod>> paymentMethods = Right([]);
 
+  PaymentMethodProvider(this.paymentMethodClient);
 
   getPaymentMethods() {
     toggleLoadingState();
