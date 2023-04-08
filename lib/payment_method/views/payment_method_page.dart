@@ -1,3 +1,4 @@
+import 'package:ejara/payment_method/views/add_payment_method_page.dart';
 import 'package:ejara/payment_method/views/payment_method_item.dart';
 import 'package:ejara/payment_method/views/wallet_item.dart';
 import 'package:ejara/widgets/app_button.dart';
@@ -295,8 +296,11 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
                                                 0.07,
                                         child: AppButton(
                                           text: "Continue",
-                                          onPressed: () =>
-                                              Navigator.pop(context),
+                                          onPressed: () => Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const AddPaymentMethodPage())),
                                         ),
                                       ),
                                     )
