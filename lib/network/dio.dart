@@ -37,10 +37,6 @@ Dio http = Dio(
 
         // Default.
         policy: CachePolicy.request,
-        // Returns a cached response on error but for statuses 401 & 403.
-        // Also allows to return a cached response on network errors (e.g. offline usage).
-        // Defaults to [null].
-        hitCacheOnErrorExcept: [401, 403],
         // Overrides any HTTP directive to delete entry past this duration.
         // Useful only when origin server has no cache config or custom behaviour is desired.
         // Defaults to [null].

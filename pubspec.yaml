@@ -37,7 +37,7 @@ dependencies:
   shared_preferences: ^2.1.0
   envied: ^0.3.0
   dartz: ^0.10.1
-  intl: ^0.18.0
+  money_formatter: ^0.0.4
 
 dev_dependencies:
   flutter_test:

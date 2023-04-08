@@ -6,6 +6,7 @@ import 'package:ejara/payment_method/views/wallet_item.dart';
 import 'package:ejara/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:money_formatter/money_formatter.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/loading_state.dart';
@@ -119,7 +120,9 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
                                           MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          "20000",
+                                          MoneyFormatter(amount: 20000)
+                                              .output
+                                              .nonSymbol,
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   16, 21, 97, 1),
@@ -154,21 +157,37 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
-                                        children: const [
-                                          Text(
+                                        children: [
+                                          const Text(
                                             "Earnings per day",
                                             style: TextStyle(
                                                 color: Color.fromRGBO(
                                                     210, 212, 226, 1),
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          Text(
-                                            "10000CFA",
-                                            style: TextStyle(
-                                              color: Color.fromRGBO(
-                                                  106, 110, 153, 1),
+                                          RichText(
+                                            text: TextSpan(
+                                              children: <TextSpan>[
+                                                TextSpan(
+                                                  text: MoneyFormatter(
+                                                          amount: 10000)
+                                                      .output
+                                                      .nonSymbol,
+                                                  style: const TextStyle(
+                                                    color: Color.fromRGBO(
+                                                        106, 110, 153, 1),
+                                                  ),
+                                                ),
+                                                const TextSpan(
+                                                  text: "CFA",
+                                                  style: TextStyle(
+                                                    color: Color.fromRGBO(
+                                                        106, 110, 153, 1),
+                                                  ),
+                                                )
+                                              ],
                                             ),
-                                          )
+                                          ),
                                         ],
                                       ),
                                     )
