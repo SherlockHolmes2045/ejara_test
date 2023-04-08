@@ -78,7 +78,16 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
                         ),
                       );
                     }, (paymentMethods) {
-                      return Expanded(
+                return paymentMethods.isEmpty ?  Padding(
+                          padding: EdgeInsets.only(
+                                  top:
+                                      MediaQuery.of(context).size.height * 0.3),
+                          child: const Center(
+                            child: Text(
+                                "Aucune données pour l'instant réessayer plus tard"),
+                          ),
+                        ):
+                      Expanded(
                         child: Column(
                           children: [
                             const SizedBox(
