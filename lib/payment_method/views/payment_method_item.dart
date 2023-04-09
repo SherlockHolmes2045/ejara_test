@@ -30,7 +30,7 @@ class PaymentMethodItem extends StatelessWidget {
       ),
       subtitle: Text(
         paymentMethod.descriptionFr ?? "",
-        style: TextStyle(
+        style: const TextStyle(
           color: Color.fromRGBO(200, 200, 218, 1),
         ),
       ),

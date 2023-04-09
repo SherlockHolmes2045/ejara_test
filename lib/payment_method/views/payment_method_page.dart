@@ -5,7 +5,6 @@ import 'package:ejara/payment_method/views/payment_method_item.dart';
 import 'package:ejara/payment_method/views/wallet_item.dart';
 import 'package:ejara/widgets/app_button.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:money_formatter/money_formatter.dart';
 import 'package:provider/provider.dart';
 
@@ -20,7 +19,6 @@ class PaymentMethodPage extends StatefulWidget {
 }
 
 class _PaymentMethodPageState extends State<PaymentMethodPage> {
-  final formatCurrency = NumberFormat.simpleCurrency();
 
   @override
   void initState() {
