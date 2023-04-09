@@ -258,14 +258,16 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
                                                     Padding(
                                                       padding: const EdgeInsets
                                                               .symmetric(
-                                                          horizontal: 16.0),
+                                                          horizontal: 10.0),
                                                       child: Row(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
-                                                                .center,
+                                                                .spaceBetween,
                                                         children: [
+                                                          const SizedBox.shrink(),
                                                           Text(
-                                                            'Select the mobile money method',
+                                                            "Select the ${paymentMethods[paymentMethodIndex].titleEn!} method",
+                                                            overflow: TextOverflow.ellipsis,
                                                             style: TextStyle(
                                                                 fontSize: Theme.of(
                                                                         context)
