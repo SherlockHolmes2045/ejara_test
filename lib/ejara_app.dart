@@ -15,7 +15,7 @@ class EjaraApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => PaymentMethodProvider(PaymentMethodClient())),
-        ChangeNotifierProvider(create: (_) => PaymentMethodSettingProvider()),
+        ChangeNotifierProvider(create: (_) => PaymentMethodSettingProvider(PaymentMethodClient())),
       ],
       child: MaterialApp(
         title: 'Ejara test',

@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 import '../models/payment_method.dart';
 
 class PaymentMethodProvider extends BaseProvider {
-  PaymentMethodClient paymentMethodClient;
+  final PaymentMethodClient paymentMethodClient;
   Either<Exception, List<PaymentMethod>> paymentMethods = Right([]);
 
   PaymentMethodProvider(this.paymentMethodClient);

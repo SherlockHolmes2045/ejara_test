@@ -267,6 +267,7 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
                                                           const SizedBox.shrink(),
                                                           Text(
                                                             "Select the ${paymentMethods[paymentMethodIndex].titleEn!} method",
+                                                            key: const Key("modal.title"),
                                                             overflow: TextOverflow.ellipsis,
                                                             style: TextStyle(
                                                                 fontSize: Theme.of(
