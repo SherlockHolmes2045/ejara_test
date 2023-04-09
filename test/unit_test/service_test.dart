@@ -4,13 +4,12 @@ import 'package:ejara/payment_method/models/payment_method_setting.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-
 import 'service_test.mocks.dart';
 
 class PaymentMethodClientTest extends Mock implements PaymentMethodClient {}
 
 @GenerateMocks([PaymentMethodClientTest])
-Future<void> main() async {
+void main() async {
   late MockPaymentMethodClientTest paymentMethodClientTest;
   setUpAll(() {
     paymentMethodClientTest = MockPaymentMethodClientTest();

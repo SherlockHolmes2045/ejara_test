@@ -8,4 +8,4 @@ A new Flutter project.
 2. run the command to generate the environment files `flutter pub run build_runner build --delete-conflicting-outputs`
 3. run `flutter pub get`
 4. run `flutter run`
-5. to run the tests run `flutter test` for widget test and `flutter test test/service_test.dart` for unit test
+5. to run the tests run `flutter test test/integration_test/` for integration test and `flutter test test/unit_test/` for unit test
